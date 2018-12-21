@@ -11,9 +11,6 @@ public abstract class Animal {
         this.swimLimit = swimLimit;
     }
 
-    /**
-     * 6-ой пункт ДЗ
-     */
     void run(int runLimit) {
         System.out.printf("run: %s\n", runLimit > 0 && runLimit <= this.runLimit);
     }
@@ -26,9 +23,6 @@ public abstract class Animal {
          System.out.printf("swim: %s\n", swimLimit > 0 && swimLimit <= this.swimLimit);
     }
 
-    /**
-     * Вспомогательные методы для разброса ограничений животного (9-ый пункт ДЗ)
-     */
     static int intSpreading(int min, int max) {
         Random random = new Random();
         return random.nextBoolean() ? random.nextInt(max) : -random.nextInt(min);

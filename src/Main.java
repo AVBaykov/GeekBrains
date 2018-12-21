@@ -1,35 +1,21 @@
 public class Main {
     public static void main(String[] args) {
+        Bowl bowl = new Bowl(30);
+        Cat[] catsArray = new Cat[10];
 
-        Person[] persArray = new Person[5];
-        persArray[0] = new Person("Иванов Иван Иванович", "Сантехник", "ivani4rulez@company.ru", "+7 916 808 80 80 ", 45_000, 53);
-        persArray[1] = new Person("Путилов Аристарх Вениаминович", "Главный", "putilov.aristarh@company.ru", "+7 916 777 77 77 ", 400_000, 45);
-        persArray[2] = new Person("Хаек Сэльма Агаповна", "Бухгалтер", "ivani4rulez@bk.ru", "+7 916 808 80 80 ", 70_000, 28);
-        persArray[3] = new Person("Гудвин Джон Алексеевич", "Младший электрик", "goodwin@company.ru", "+7 916 808 80 80 ", 55_000, 30);
-        persArray[4] = new Person("Фролов Фома Акакиевич", "Логопед", "ivani4rulez@bk.ru", "+7 916 808 80 80 ", 80_000, 41);
+        for (int i = 0; i < 10; i++) {
+            catsArray[i] = new Cat("Кот" + i);
+        }
 
-        for (Person p : persArray) {
-            if (p.getAge() > 40) {
-                System.out.println(p);
+        for (Cat cat : catsArray) {
+            cat.eat(bowl);
+            if (bowl.getCurrentFood() == 0) {
+                bowl.refill();
             }
         }
 
-        /**
-         * Проверка 8-ого пункта ДЗ
-         */
-        Animal cat = new Cat();
-        Animal dog = new Dog();
-        Animal cat1 = new Cat();
-        Animal dog1 = new Dog();
-        Animal cat2 = new Cat();
-        Animal dog2 = new Dog();
-
-        cat.run(100);
-        cat.jump(1.5);
-        cat.swim(5);
-
-        dog.run(200);
-        dog.jump(3);
-        dog.swim(7);
+        for (Cat cat : catsArray) {
+            cat.checkBellyful();
+        }
     }
 }
