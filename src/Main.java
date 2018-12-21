@@ -10,7 +10,7 @@ public class Main {
 
         for (Person p : persArray) {
             if (p.getAge() > 40) {
-                p.print();
+                System.out.println(p);
             }
         }
 

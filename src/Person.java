@@ -38,10 +38,6 @@ public class Person {
      * 3-ий пункт ДЗ:
      * вывод информации об объекте.
      */
-    public void print() {
-        System.out.println(this);
-    }
-
     @Override
     public String toString() {
         return "Person{" +
