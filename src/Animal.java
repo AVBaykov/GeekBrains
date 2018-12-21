@@ -15,15 +15,15 @@ public abstract class Animal {
      * 6-ой пункт ДЗ
      */
     void run(int runLimit) {
-        System.out.printf("run: %s\n", runLimit > 0 && runLimit < this.runLimit);
+        System.out.printf("run: %s\n", runLimit > 0 && runLimit <= this.runLimit);
     }
 
     void jump(double jumpLimit) {
-        System.out.printf("jump: %s\n", jumpLimit > 0 && jumpLimit < this.jumpLimit);
+        System.out.printf("jump: %s\n", jumpLimit > 0 && jumpLimit <= this.jumpLimit);
     }
 
      void swim(int swimLimit) {
-         System.out.printf("swim: %s\n", swimLimit > 0 && swimLimit < this.swimLimit);
+         System.out.printf("swim: %s\n", swimLimit > 0 && swimLimit <= this.swimLimit);
     }
 
     /**
