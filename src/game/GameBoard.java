@@ -9,7 +9,7 @@ public class GameBoard extends JFrame {
     private char[][] gameField;
     private GameButton[] gameButtons;
 
-    private static char nullSymbol = '\u0000';
+    static char nullSymbol = '\u0000';
 
     private Game game;
 
@@ -66,6 +66,10 @@ public class GameBoard extends JFrame {
 
     Game getGame() {
         return game;
+    }
+
+    public char[][] getGameField() {
+        return gameField;
     }
 
     GameButton getButton(int buttonIndex) {

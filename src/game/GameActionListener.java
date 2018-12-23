@@ -2,17 +2,11 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class GameActionListener implements ActionListener {
-
-    private int row;
-    private int cell;
     private GameButton button;
 
-    public GameActionListener(int row, int cell, GameButton button) {
-        this.row = row;
-        this.cell = cell;
+    GameActionListener(GameButton button) {
         this.button = button;
     }
 
@@ -20,53 +14,21 @@ public class GameActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         GameBoard board = button.getBoard();
 
+        int row = button.getButtonIndex() / GameBoard.dimension;
+        int cell = button.getButtonIndex() % GameBoard.dimension;
+
         if (board.isTurnable(row, cell)) {
-            updateByPlayersData(board);
+            board.getGame().getCurrentPlayer().updateByPlayersData(button);
 
             if (board.isFull()) {
                 board.getGame().showMessage("Ничья!");
                 board.emptyField();
-            } else {
-                updateByAiDate(board);
+            } else  {
+                board.getGame().getCurrentPlayer().updateByAiDate(button);
             }
         } else {
             board.getGame().showMessage("Некорректный ход");
         }
 
-    }
-
-    private void updateByAiDate(GameBoard board) {
-        int x, y;
-        Random rnd = new Random();
-
-        do {
-            x = rnd.nextInt(GameBoard.dimension);
-            y = rnd.nextInt(GameBoard.dimension);
-        } while (!board.isTurnable(x, y));
-
-        board.updateGameField(x, y);
-
-        int cellIndex = GameBoard.dimension * x + y;
-        board.getButton(cellIndex).setText(Character.toString(board.getGame().getCurrentPlayer().getPlayerSign()));
-
-        if (board.checkWin()) {
-            button.getBoard().getGame().showMessage("Компьютер выиграл!");
-            board.emptyField();
-        } else {
-            board.getGame().passTurn();
-        }
-    }
-
-    private void updateByPlayersData(GameBoard board) {
-        board.updateGameField(row, cell);
-
-        button.setText(Character.toString(board.getGame().getCurrentPlayer().getPlayerSign()));
-
-        if (board.checkWin()) {
-            board.getGame().showMessage("Вы выиграли");
-            board.emptyField();
-        } else {
-            board.getGame().passTurn();
-        }
     }
 }

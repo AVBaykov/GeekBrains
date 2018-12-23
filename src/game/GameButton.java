@@ -10,14 +10,15 @@ public class GameButton extends JButton {
         this.buttonIndex = buttonIndex;
         this.board = currentGameBoard;
 
-        int rowNum = buttonIndex / GameBoard.dimension;
-        int cellNum = buttonIndex % GameBoard.dimension;
-
         setSize(GameBoard.cellSize - 5, GameBoard.cellSize - 5);
-        addActionListener(new GameActionListener(rowNum, cellNum, this));
+        addActionListener(new GameActionListener(this));
     }
 
     public GameBoard getBoard() {
         return board;
+    }
+
+    public int getButtonIndex() {
+        return buttonIndex;
     }
 }
