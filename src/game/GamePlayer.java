@@ -91,30 +91,31 @@ public class GamePlayer {
                     maxScoreCell = i;
                 }
             }
+        }
 
-            if (maxScoreRow == -1) {
-                do {
-                    row = random.nextInt(dimension);
-                    cell = random.nextInt(dimension);
-                } while (!button.getBoard().isTurnable(row, cell));
-            }
+        if (maxScoreRow == -1) {
+            do {
+                row = random.nextInt(dimension);
+                cell = random.nextInt(dimension);
+            } while (!button.getBoard().isTurnable(row, cell));
+        }
 
-            if (maxScoreRow != -1) {
-                row = maxScoreRow;
-                cell = maxScoreCell;
-            }
+        if (maxScoreRow != -1) {
+            row = maxScoreRow;
+            cell = maxScoreCell;
+        }
 
-            button.getBoard().updateGameField(row, cell);
+        button.getBoard().updateGameField(row, cell);
 
-            int cellIndex = dimension * row + cell;
-            button.getBoard().getButton(cellIndex).setText(Character.toString(playerSign));
+        int cellIndex = dimension * row + cell;
+        button.getBoard().getButton(cellIndex).setText(Character.toString(playerSign));
 
-            if (button.getBoard().checkWin()) {
-                button.getBoard().getGame().showMessage("Компьютер выиграл!");
-                button.getBoard().emptyField();
-            } else {
-                button.getBoard().getGame().passTurn();
-            }
+        if (button.getBoard().checkWin()) {
+            button.getBoard().getGame().showMessage("Компьютер выиграл!");
+            button.getBoard().emptyField();
+        } else {
+            button.getBoard().getGame().passTurn();
         }
     }
 }
+
