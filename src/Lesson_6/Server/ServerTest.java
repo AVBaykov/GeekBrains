@@ -48,8 +48,9 @@ public class ServerTest {
         }
     }
 
-    public void unicastMsg(String nick, String msg) {
-        clients.get(nick).sendMsg(msg);
+    public void unicastMsg(ClientHandler clientHandler, String nick, String msg) {
+        clients.get(nick).sendMsg(clientHandler.getNick() + " to you: " + msg);
+        clientHandler.sendMsg("you to + " + nick + ": " + msg);
     }
 
     public boolean isAlreadyExists(String nick) {

@@ -53,8 +53,8 @@ public class ClientHandler {
                             break;
                         }
                         if (str.startsWith("/w")) {
-                            String[] tokens = str.split(" ");
-                            server.unicastMsg(tokens[1], tokens[2]);
+                            String[] tokens = str.split(" ", 3);
+                            server.unicastMsg(ClientHandler.this, tokens[1], tokens[2]);
                         } else {
                             server.broadcastMsg(nick + ": " + str);
                         }
@@ -84,6 +84,10 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNick() {
+        return nick;
     }
 
     public void sendMsg(String msg) {
