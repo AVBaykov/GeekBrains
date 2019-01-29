@@ -25,8 +25,10 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
-                    while (true) {
-                        String str = in.readUTF();
+                    long currentTime = System.currentTimeMillis();
+                    long authorizeTime = currentTime + 5_000;
+                    String str;
+                    while (System.currentTimeMillis() < authorizeTime && !(str = in.readUTF()).isEmpty()) {
 
                         if (str.startsWith("/auth")) {
                             String[] tokens = str.split(" ");
@@ -46,8 +48,12 @@ public class ClientHandler {
                         }
                     }
 
+                    if (nick != null) {
+                        sendMsg("Клиент отключен");
+                        return;
+                    }
                     while (true) {
-                        String str = in.readUTF();
+                        str = in.readUTF();
                         if (str.equals("/end")) {
                             out.writeUTF("/serverClosed");
                             break;
@@ -59,6 +65,7 @@ public class ClientHandler {
                             server.broadcastMsg(nick + ": " + str);
                         }
                     }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
