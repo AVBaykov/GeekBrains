@@ -1,5 +1,8 @@
 package gb.message;
 
+/**
+ * Класс для хранения сообщений. Сообщение - сочетание ника пользователя и текста его сообщения.
+ */
 public class Message {
 
     private String nick;
