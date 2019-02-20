@@ -1,5 +1,8 @@
 package gb.server;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,6 +14,7 @@ public class ClientHandler {
     private DataOutputStream out;
     private DataInputStream in;
     private String nick;
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public ClientHandler(Server server, Socket socket) {
         try {
@@ -31,6 +35,7 @@ public class ClientHandler {
                                 server.subscribe(this);
                                 break;
                             } else {
+                                log.info("Неверный логин/пароль");
                                 sendMsg("Неверный логин/пароль");
                             }
                         }
@@ -38,6 +43,7 @@ public class ClientHandler {
                     while (true) {
                         String str = in.readUTF();
                         if(str.equals("/end")) {
+                            log.info("Клиент {} отключился от чата", nick);
                             out.writeUTF("/serverclosed");
                             break;
                         }

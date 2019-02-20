@@ -23,7 +23,6 @@ public class Server {
             System.out.println("Сервер запущен. Ожидаем клиентов...");
             while (true) {
                 socket = server.accept();
-//                System.out.println("Клиент подключился");
                 log.info("Клиент подключился");
                 new ClientHandler(this, socket);
                 // clients.add(new ClientHandler(this, socket));
