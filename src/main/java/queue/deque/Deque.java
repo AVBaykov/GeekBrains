@@ -4,11 +4,11 @@ import queue.Queue;
 
 public interface Deque<E> extends Queue<E> {
 
-    void addFirst(E element);
+    void addLeft(E element);
 
-    void addLast(E element);
+    void addRight(E element);
 
-    E removeFirst();
+    E removeLeft();
 
-    E removeLast();
+    E removeRight();
 }

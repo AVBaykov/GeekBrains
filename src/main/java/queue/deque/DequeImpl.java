@@ -14,30 +14,33 @@ public class DequeImpl<E> extends QueueImpl<E> implements Deque<E> {
     }
 
     @Override
-    public void addFirst(E element) {
+    public void addLeft(E element) {
         isFullCheck();
-        data[front++] = element;
-        checkForFrontReset();
+        if (front - 1 < 0) {
+            front = data.length;
+        }
+        data[--front] = element;
         size++;
     }
 
     @Override
-    public void addLast(E element) {
+    public void addRight(E element) {
         super.add(element);
     }
 
     @Override
-    public E removeFirst() {
+    public E removeLeft() {
         return super.remove();
     }
 
     @Override
-    public E removeLast() {
+    public E removeRight() {
         isEmptyCheck();
-        checkForRearReset();
-        E removedValue = data[++rear];
+        if (rear < 0) {
+            rear = data.length - 1;
+        }
         size--;
-        return removedValue;
+        return data[rear--];
     }
 
 }
