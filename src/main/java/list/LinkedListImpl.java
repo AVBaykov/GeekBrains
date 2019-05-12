@@ -178,7 +178,7 @@ public class LinkedListImpl<E> implements TwoSideLinkedList<E> {
 
         @Override
         public E getCurrent() {
-            return lastReturned.value;
+            return next.value;
         }
 
         @Override
